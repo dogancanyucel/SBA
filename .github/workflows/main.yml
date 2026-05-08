@@ -1,0 +1,17 @@
+name: Engineering Check
+on: [push] # Tetikleyici: Her push işleminde çalışır
+
+jobs:
+  run-validation: # İş ismi (Sanal makine burada başlar)
+    runs-on: ubuntu-latest # Temiz bir Linux VM istenir
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Kodu VM'e kopyalar
+
+      - name: Setup Python
+        uses: actions/setup-python@v4 # Python kurulumu
+        with:
+          python-version: '3.10'
+
+      - name: Run Tests
+        run: python test_logic.py # Test scriptini çalıştırır
